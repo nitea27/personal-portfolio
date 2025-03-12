@@ -42,7 +42,7 @@
       <div class="sidebar-info">
 
         <figure class="avatar-box">
-          <img src="./assets/images/avatar-2.png" alt="Niti Wadji" width="80">
+          <img src="./assets/images/my-avatar-2.png" alt="Niti Wadji" width="80">
         </figure>
 
         <div class="info-content">
@@ -727,7 +727,7 @@
 
           <h3 class="h3 form-title">Contact Form</h3>
 
-          <form action="send-message.php" method="post" class="form" data-form>
+          <form action="/submit.php" method="POST" class="form" id="myForm" data-form>
 
             <div class="input-wrapper">
               <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
@@ -739,7 +739,7 @@
 
             <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
 
-            <button class="form-btn" type="submit" disabled data-form-btn>
+            <button class="form-btn" type="submit" data-form-btn>
               <ion-icon name="paper-plane"></ion-icon>
               <span>Send Message</span>
             </button>
@@ -769,7 +769,18 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+  document.getElementById("myForm").addEventListener("submit", function(e) {
+    e.preventDefault();  // Prevent default form submission
+    fetch("submit.php", {
+        method: "POST",
+        body: new FormData(this)
+    }).then(response => response.json()).then(data => {
+        console.log(data);
+    });
+});
 
+</script>
 </body>
 
 </html>
